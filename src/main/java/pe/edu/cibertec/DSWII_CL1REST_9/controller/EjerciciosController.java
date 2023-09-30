@@ -31,5 +31,21 @@ public class EjerciciosController {
         return new ResponseEntity<>(ejerciciosService.promedioNotas(nota1, nota2, nota3, nota4), HttpStatus.OK);
     }
 
+    @GetMapping("sacarDNI")
+    public ResponseEntity<MensajeResponse> sacarDNI(@RequestParam Integer añonacimiento){
+        return  new ResponseEntity<>(ejerciciosService.sacarDNI(añonacimiento),HttpStatus.OK);
+    }
+
+    @GetMapping("obtenerNumerosPares")
+    public ResponseEntity<MensajeResponse> obtenerNumerosPares(){
+        return  new ResponseEntity<>(ejerciciosService.obtenerNumerosPares(),HttpStatus.OK);
+    }
+
+    @GetMapping("obtenerTotalPagar")
+    public ResponseEntity<MensajeResponse> obtenerTotalPagar(@RequestParam int cantidad,
+                                                             @RequestParam Double precio){
+        return new ResponseEntity<>(ejerciciosService.obtenerTotalPagar(cantidad,precio),HttpStatus.OK);
+    }
+
 
 }

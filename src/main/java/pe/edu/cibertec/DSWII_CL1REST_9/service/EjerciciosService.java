@@ -3,6 +3,11 @@ package pe.edu.cibertec.DSWII_CL1REST_9.service;
 import org.springframework.stereotype.Service;
 import pe.edu.cibertec.DSWII_CL1REST_9.model.MensajeResponse;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 @Service
 public class EjerciciosService {
 
@@ -55,6 +60,44 @@ public class EjerciciosService {
                 .build();
 
     }
+
+    public MensajeResponse sacarDNI(Integer añonacimiento){
+        LocalDate hoy = LocalDate.now();
+        Integer añoactual = hoy.getYear();
+        Integer edad = añoactual-añonacimiento;
+        String mensaje;
+        if (edad >= 18) {
+            mensaje = "Necesita sacar su DNI";
+        }
+        else {
+            mensaje = "No necesita sacar su DNI";
+        }
+        return MensajeResponse.builder()
+                .resultado(mensaje).build();
+    }
+
+    public MensajeResponse obtenerNumerosPares(){
+        List<Integer> numerosPares = new ArrayList<>();
+        for (int i = 20; i >= 10; i--){
+            if(i % 2 == 0){
+                numerosPares.add(i);
+            }
+        }
+        return MensajeResponse.builder().resultado("Numeros Pares: "+numerosPares).build();
+    }
+
+    public MensajeResponse obtenerTotalPagar(int cantidad, Double precio){
+        Double valor = cantidad * precio;
+        Double totalpagar;
+        if(valor > 200) {
+            totalpagar = valor * 0.2;
+        } else {
+            totalpagar = valor;
+        }
+        return MensajeResponse.builder().resultado("El total a pagar es: "+totalpagar).build();
+    }
+
+
 
 
 
